@@ -1,6 +1,6 @@
 # Tools for Software Development - Assignment 1
 
-### Version 1.0
+### Version 2.0
 
 ### Due date: Specified in the Course Outline
 
@@ -42,15 +42,18 @@ Note that gitlab/github/bitbucket have inbuilt issue trackers.
 These instructions assume that your group *is* using GitLab. If you choose to use a different tool, you're required to complete these tasks using your chosen tools equivilent components. 
 
 1. Create milestones for your project. 
+
 2. Create issues, and assign them to the relevent milestones. 
 	- Issues include bugs and features. 
 	- Since programming is not the major focus of this course, there is a supplied list of bugs and some features in the appendix. 
+
 3. Assign issues to team members. 
  	- That team member will then be responsible for:
 		+ fixing the bug
 		+ leaving a descriptive commit message
 		+ pushing their changes
 		+ closing this issue. 
+
 4. Once all issues for a particular milestone have been fixed:
 	- Create a tag for the milestone
 	- Close the milestone
@@ -62,6 +65,7 @@ These instructions assume that your group *is* using GitLab. If you choose to us
 	The third milestone will be adding features you choose as a group.
 
 5. Once milestone 3 has been completed, you will need to conduct a code review to improve and optimise the code.
+
 6. Create two markdown files: 
 	- changes.md:: list the changes made during the code review
 	- manual.md:: detail how to use the software.
@@ -69,16 +73,16 @@ These instructions assume that your group *is* using GitLab. If you choose to us
 ### Submission
 
 The submission is completed in two parts: 
-1. During some practicals (week 9), each member is required to demonstrate your issue tracker to your practical instructor. 
-	- Each group member must have created issues, and have issues assigned to them. 
-	- Do not rely on other members in your group having this stage ticked off for you. 
-		+ If you want the mark, you must demonstrate this to your instructor personally. 
-
-2. The final submission is your git repository. 
+1. The final submission is your git repository. 
 	- **EACH** group member must make a submission. 
 	- Each member needs to: 
 		+ Clone your groups git repository
 		+ Submit both your working directory *and* the '.git' folder. 
+2. During practicals in week 9, each member is required to demonstrate your issue tracker to your practical instructor. (External students submit screenshots)
+	- Each group member must have created issues, and have issues assigned to them. 
+	- Do not rely on other members in your group having this stage ticked off for you. 
+		+ If you want the mark, you must demonstrate this to your instructor personally. 
+
 
 
 # Marking
@@ -86,33 +90,33 @@ This is a team-project to practice many of the team-development concepts and too
 It is important to note that team members do not have equal marks. 
 Individual contributions (such as your stored in the gitlab server) will be considered across all assessment criteria.
 
-## Scheme
-The marking scheme is approximately as follows. The dot-point guides (for example, 'Fixing Bugs (13%)') provide the approximate mark allocated for this task. The final marking scheme may vary. The section marks (for example, 'Programming (50% of mark)' are fixed. 
+## Marking criteria
 
-Programming (50% of mark)
+Programming
 
-	- Fixing Bugs (13%)
-	- Adding Features (13%)
-	- New Features (24%)
+	- Fixing Bugs
+	- Adding Features
+	- New Features
 	- These tasks require not just programming, but also git commits on feature branches.
 
-Issue Tracking (10% of mark)
+Issue Tracking
 
 	- Creating Issues
 	- Closing Issues
 	- Git commits that match the issue numbers
 
-Git (25%)
+Git
 
 	- Commit Log formatting
 	- Commits, merges, tags, and branches
 	- Signing your commits
 
-Misc (15%)
+Misc
 
 	- Creation of relevant files
 	- Code review
-	- Documentation Files 
+	- Documentation Files
+    - Individual presentation (3 minutes each. Internal students present in class, external students submit voice recorded slides.)
 
 ## Notes
 
@@ -128,8 +132,7 @@ It's important to note that:
 The supplied code is the first alpha of a cash register program. 
 Upon running the code the user is prompted for their float (the amount of money in the cash register at the start of the day). 
 The user then enters a product name, product price, and the amount of cash tendered by a customer. 
-The program then prints to the screen the amount of change required by the customer and the balance of the cash in the
-cash register. 
+The program then prints to the screen the amount of change required by the customer and the balance of the cash in the cash register. 
 As milestones are met the program will gain in functionality.
 
 ## Milestone 1: Fixing the Bugs (15%)
@@ -142,15 +145,10 @@ As milestones are met the program will gain in functionality.
 7. Once all milestone 1 issues are resolved and the code has been checked to make sure then close
 milestone 1 and tag the code as version1
 
-
 ## Milestone 2: Adding Features (15%)
-1. As before each user must add the features assigned to them, commit their code, and close the
-issue.
-2. The group member tasked with translating the application’s text prompts into another language will need to create a new branch, and add the translation on this branch (google translate is fine). Once
-the translation is complete this branch will be tagged, and the group member will push their
-changes to the repository then return to the mainline without merging.
-3. Once all milestone 2 issues have been closed, test the code, then tag it as version2 and close the
-milestone.
+1. As before each user must add the features assigned to them, commit their code, and close the issue.
+2. The group member tasked with translating the application's text prompts into another language will need to create a new branch, and add the translation on this branch (google translate is fine). Once the translation is complete this branch will be tagged, and the group member will push their changes to the repository then return to the mainline without merging.
+3. Once all milestone 2 issues have been closed, test the code, then tag it as version2 and close the milestone.
 
 ## Milestone 3: New Features (30%)
 1. As a group you will need to choose new features to add functionality to your cash register program.
@@ -172,7 +170,7 @@ wiki page that lists each change to the code and why it was done.
 
 # Appendix
 
-## Milestone 1
+## Summary of given bugs in Milestone 1
 1. Can't compile using the Makefile
 2. Spelling errors in prompts
 3. Change value is not correct
@@ -192,7 +190,7 @@ change calculated.
 4. After processing a transaction present an option to provide a receipt. If the customer says yes print
 a receipt to the screen including the names and cost of all items bought, the total, the cash
 tendered, and the change.
-5. Modify the makefile to include creation of a jar file
+5. Modify the Makefile to include creation of a jar file
 6. Add a nice welcome message once the program is started.
 7. Add eloquent error handling in the case of unexpected input from the user
 8. Create a branch for an experimental version of the software in another language 
