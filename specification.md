@@ -2,7 +2,7 @@
 
 ### Version 2.0
 
-### Due date: Specified in the Course Outline
+### Due date: Specified in the Course Website (Sunday, 6 October 2019, 11:59 PM)
 
 This is a group assignment. 
 You can self-nominate your group members before the end of week 3 on Sunday, provided: 
