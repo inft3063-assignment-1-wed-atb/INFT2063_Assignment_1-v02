@@ -9,7 +9,7 @@ public class Transaction
    }
 
    public double getCost() {
-      return cost*2;
+      return cost;
    }
 
    public void setCost(double cost) {

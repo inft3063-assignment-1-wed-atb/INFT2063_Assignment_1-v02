@@ -23,7 +23,7 @@ public class CashRegister
 
       System.out.print("Please enter the cash amount tendered:");
       s = in.nextLine();
-      c = Double.toString(Double.parseDouble(s) + trans.getCost());
+      c = Double.toString(Double.parseDouble(s) - trans.getCost());
 
       System.out.println("Amount of change required = " + c);
 
