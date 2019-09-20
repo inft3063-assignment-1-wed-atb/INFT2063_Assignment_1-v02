@@ -9,7 +9,7 @@ all: Transaction.class CashRegister.class
 CashRegister.class: CashRegister.java
 	$(JAVAC) $(JFLAGS) CashRegister.java
 
-Transaction.clas: Transaction.java
+Transaction.class: Transaction.java
 	$(JAVAC) $(JFLAGS) Transaction.java
 
 clean:
