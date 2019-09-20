@@ -29,7 +29,7 @@ public class CashRegister
 
       c = Double.toString(balance + trans.getCost());
 
-      System.out.println("Balance of the Cash Register:");
+      System.out.println("Balance of the Cash Register:" + c);
 
 
 
