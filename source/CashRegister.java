@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class CashRegister {
 	public static void main(String[] args) {
-		String s, c;
+		String s;
+		String c = "Nill";
 		String proceed;
 		double balance;
 		String dollar_symbol = "$";
@@ -37,11 +38,11 @@ public class CashRegister {
 
 				c = Double.toString(balance + trans.getCost());
 
-				System.out.println("Balance of the Cash Register:" + dollar_symbol + c);
 
 			}
 
 			else if (proceed.equalsIgnoreCase("n")) {
+				System.out.println("Balance of the Cash Register: " + dollar_symbol + c);
 				endProgram = true;
 			}
 
