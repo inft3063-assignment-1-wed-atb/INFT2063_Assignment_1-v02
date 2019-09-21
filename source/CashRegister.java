@@ -9,6 +9,8 @@ public class CashRegister {
 		String dollar_symbol = "$";
 		boolean endProgram = false;
 
+		boolean nextItem = true;
+		double totalCost =0;
 		Scanner in = new Scanner(System.in);
 
 		System.out.print("Please enter cash register's float:");
@@ -21,7 +23,7 @@ public class CashRegister {
 			proceed = in.nextLine();
 
 			if (proceed.equalsIgnoreCase("y")) {
-
+				while(nextItem == true) {
 				System.out.print("Please enter the item's name:");
 				s = in.nextLine();
 
@@ -30,13 +32,25 @@ public class CashRegister {
 
 				Transaction trans = new Transaction(s, Double.parseDouble(c));
 
+				totalCost += trans.getCost();
+				System.out.println("Have you entered all items? (y/n)");
+				s = in.nextLine();
+				while(!(s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n"))) {
+					System.out.println("Please Enter y/n only");
+					System.out.println("Have you entered all items? (y/n)");
+				}
+				if(s.equalsIgnoreCase("y")) {
+					nextItem = false;
+				}
+				}
+				
 				System.out.print("Please enter the cash amount tendered:");
 				s = in.nextLine();
-				c = Double.toString(Double.parseDouble(s) - trans.getCost());
+				c = Double.toString(Double.parseDouble(s) - totalCost);
 
 				System.out.println("Amount of change required = " + dollar_symbol + c);
 
-				c = Double.toString(balance + trans.getCost());
+				c = Double.toString(balance + totalCost);
 
 
 			}
