@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class CashRegister {
 	public static void main(String[] args) {
-		String s;
-		String c = "Nill";
+		String s = null;
+		String c = "0";
 		String proceed;
-		double balance;
+		double balance = 0;
 		String dollar_symbol = "$";
 		boolean endProgram = false;
+		boolean validation = false;
 
 		boolean recieptEnd = false;
 		
@@ -18,11 +19,22 @@ public class CashRegister {
 		
 		Scanner in = new Scanner(System.in);
 
-		System.out.print("Please enter cash register's float:");
-		s = in.nextLine();
-		balance = Double.parseDouble(s);
+		while (!validation) {
+			try {
+				System.out.print("Please enter cash register's float:");
+				s = in.nextLine();
+				balance = Double.parseDouble(s);
+				validation = true;
+			
+			} catch(Exception e) {
+				System.out.println("Invalid input, please enter a appropriate value.");
+			}
+		}
+		validation = false;
 
 		while (!endProgram) {
+			
+			nextItem = true;
 
 			System.out.println("Would you like to proceed with the transaction? (y/n)");
 			proceed = in.nextLine();
@@ -32,10 +44,18 @@ public class CashRegister {
 					System.out.print("Please enter the item's name:");
 					s = in.nextLine();
 
-					System.out.print("Please enter the item's cost:");
-					c = in.nextLine();
+					while (!validation) {
+						try {
+							System.out.print("Please enter the item's cost:");
+							c = in.nextLine();
+							receipt.itemDetails(s, Double.parseDouble(c), 1);
+							validation = true;
 					
-					receipt.itemDetails(s, Double.parseDouble(c), 1);
+						} catch(Exception e) {
+							System.out.println("Invalid input, please enter a appropriate value.");
+						}
+					}
+					validation = false;
 
 					Transaction trans = new Transaction(s, Double.parseDouble(c));
 
@@ -51,10 +71,20 @@ public class CashRegister {
 						nextItem = false;
 					}
 				}
-
-				System.out.print("Please enter the cash amount tendered:");
-				s = in.nextLine();
-				receipt.cash(Double.parseDouble(s));
+				
+				while (!validation) {
+					try {
+						System.out.print("Please enter the cash amount tendered:");
+						s = in.nextLine();
+						receipt.cash(Double.parseDouble(s));
+						validation = true;
+					
+					} catch(Exception e) {
+						System.out.println("Invalid input, please enter a appropriate value.");
+					}
+				}
+				validation = false;
+						
 				c = Double.toString(Double.parseDouble(s) - totalCost);
 
 				System.out.println("Amount of change required = " + dollar_symbol + c);
