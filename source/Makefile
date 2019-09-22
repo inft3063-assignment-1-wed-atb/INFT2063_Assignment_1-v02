@@ -4,6 +4,9 @@
 JAVAC=/usr/bin/javac
 JFLAGS = -g
 
+jar: Transaction.class CashRegister.class Receipt.class
+	jar -cfe My_Cash_Register.jar CashRegister Transaction.class CashRegister.class Receipt.class
+
 all: Transaction.class CashRegister.class Receipt.class
 
 CashRegister.class: CashRegister.java
