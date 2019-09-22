@@ -19,12 +19,10 @@ public class CashRegister {
 		
 		Scanner in = new Scanner(System.in);
 
-		System.out.println("█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█\n" + 
-				"█░░╦─╦╔╗╦─╔╗╔╗╔╦╗╔╗░░█\n" + 
-				"█░░║║║╠─║─║─║║║║║╠─░░█\n" + 
-				"█░░╚╩╝╚╝╚╝╚╝╚╝╩─╩╚╝░░█\n" + 
-				"█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█\n" + 
-				" ");
+		System.out.println(".  ..___.    __ .__..  ..___\n" + 
+				"|  |[__ |   /  `|  ||\\/|[__ \n" + 
+				"|/\\|[___|___\\__.|__||  |[___\n" + 
+				"                            \n");
 		while (!validation) {
 			try {
 				System.out.print("Please enter cash register's float:");
