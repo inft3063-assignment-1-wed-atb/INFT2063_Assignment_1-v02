@@ -11,7 +11,7 @@ public class CashRegister {
 		boolean validation = false;
 
 		boolean recieptEnd = false;
-		
+
 		boolean nextItem = true;
 		double totalCost = 0;
 		
@@ -25,13 +25,13 @@ public class CashRegister {
 				"                            \n");
 		while (!validation) {
 			try {
-				System.out.print("Please enter cash register's float:");
+				System.out.print("Sicela ufake iflothi lerejista yemali:");
 				s = in.nextLine();
 				balance = Double.parseDouble(s);
 				validation = true;
 			
 			} catch(Exception e) {
-				System.out.println("Invalid input, please enter a appropriate value.");
+				System.out.println("Okokufaka okungalungile, sicela ufake inani elifanele.");
 			}
 		}
 		validation = false;
@@ -40,23 +40,23 @@ public class CashRegister {
 			
 			nextItem = true;
 
-			System.out.println("Would you like to proceed with the transaction? (y/n)");
+			System.out.println("Ungathanda ukuqhubeka nokuthengiselana? (y/n)");
 			proceed = in.nextLine();
 
 			if (proceed.equalsIgnoreCase("y")) {
 				while (nextItem == true) {
-					System.out.print("Please enter the item's name:");
+					System.out.print("Sicela ufake igama laleyo nto:");
 					s = in.nextLine();
 
 					while (!validation) {
 						try {
-							System.out.print("Please enter the item's cost:");
+							System.out.print("Sicela ufake izindleko zento:");
 							c = in.nextLine();
 							receipt.itemDetails(s, Double.parseDouble(c), 1);
 							validation = true;
 					
 						} catch(Exception e) {
-							System.out.println("Invalid input, please enter a appropriate value.");
+							System.out.println("Okokufaka okungalungile, sicela ufake inani elifanele.");
 						}
 					}
 					validation = false;
@@ -64,11 +64,11 @@ public class CashRegister {
 					Transaction trans = new Transaction(s, Double.parseDouble(c));
 
 					totalCost += trans.getCost();
-					System.out.println("Have you entered all items? (y/n)");
+					System.out.println("Ufake zonke izinto? (y/n)");
 					s = in.nextLine();
 					while (!(s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n"))) {
-						System.out.println("Please Enter y/n only");
-						System.out.println("Have you entered all items? (y/n)");
+						System.out.println("Sicela ufake y/n kuphela");
+						System.out.println("Ufake zonke izinto? (y/n)");
 						s = in.nextLine();
 					}
 					if (s.equalsIgnoreCase("y")) {
@@ -78,26 +78,26 @@ public class CashRegister {
 				
 				while (!validation) {
 					try {
-						System.out.print("Please enter the cash amount tendered:");
+						System.out.print("Sicela ufake inani lemali elikhokhelwe:");
 						s = in.nextLine();
 						receipt.cash(Double.parseDouble(s));
 						validation = true;
 					
 					} catch(Exception e) {
-						System.out.println("Invalid input, please enter a appropriate value.");
+						System.out.println("Okokufaka okungalungile, sicela ufake inani elifanele.");
 					}
 				}
 				validation = false;
 						
 				c = Double.toString(Double.parseDouble(s) - totalCost);
 
-				System.out.println("Amount of change required = " + dollar_symbol + c);
+				System.out.println("Inani loshintsho oludingekayo = " + dollar_symbol + c);
 
 				c = Double.toString(balance + totalCost);
 				
 				while (!recieptEnd) {
 
-					System.out.println("Would you like a copy of your reciept? (y/n)");
+					System.out.println("Ungathanda ikhophi ye-reciept yakho? (y/n)");
 					proceed = in.nextLine();
 					
 					if (proceed.equalsIgnoreCase("y")) {
@@ -108,7 +108,7 @@ public class CashRegister {
 						recieptEnd=true;
 					}
 					else {
-						System.out.println("Invalid input. Please try again");
+						System.out.println("Okokufaka okungalungile. Ngicela uzame futhi");
 					}
 				}
 				
@@ -116,12 +116,12 @@ public class CashRegister {
 			}
 
 			else if (proceed.equalsIgnoreCase("n")) {
-				System.out.println("Balance of the Cash Register: " + dollar_symbol + c);
+				System.out.println("Ibhalansi Yerejista Yemali: " + dollar_symbol + c);
 				endProgram = true;
 			}
 
 			else {
-				System.out.println("Invalid input. Please try again");
+				System.out.println("Okokufaka okungalungile. Ngicela uzame futhi");
 			}
 
 		}
