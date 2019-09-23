@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Receipt {
 
+	//test
 	private String reciept = "";
 	private ArrayList<String> items;
 	private ArrayList<Double> itemPrice;
@@ -44,38 +45,38 @@ public class Receipt {
 
 	public String printReciept() {
 
-		reciept = "\nTAX RECIEPT\n" + "UniSA Groceries Pty Ltd\n" + "Shop 3A, 40 Main Street, Mawson Lakes, SA\n"
-				+ "ABN 23 234 680 230\nCashier: Jeusus\n" + "\n";
+		reciept = "\nIRISIDI LENTELA\n" + "I-UniSa Groceries Pty Ltd\n" + "Shop 3A, 40 Main Street, Mawson Lakes, SA\n"
+				+ "ABN 23 234 680 230\nIndishi: UJesu\n" + "\n";
 		
-		reciept = reciept + "Item" + spaces(20) + "QTY" + spaces(2) + "Price" + spaces(2) + "Subtotal\n";
+		reciept = reciept + "Into" + spaces(20) + "Inani" + spaces(2) + "Intengo" + spaces(2) + "Okuncane\n";
 
-		reciept = reciept + "------------------------------------------------\n";
+		reciept = reciept + "----------------------------------------------------\n";
 		
 		for (int i = 0; i < items.size(); i++) {
 			reciept = reciept + items.get(i);
 			reciept = reciept + spaces(24 - items.get(i).length()) + quantity.get(i);
-			reciept = reciept + spaces(5 - String.valueOf(quantity.get(i)).length()) + itemPrice.get(i);
-			reciept = reciept + spaces(7 - String.valueOf(itemPrice.get(i)).length()) + subtotal.get(i) + "\n";
+			reciept = reciept + spaces(7 - String.valueOf(quantity.get(i)).length()) + itemPrice.get(i);
+			reciept = reciept + spaces(9 - String.valueOf(itemPrice.get(i)).length()) + subtotal.get(i) + "\n";
 		}
 
-		reciept = reciept + "\n------------------------------------------------";
+		reciept = reciept + "\n----------------------------------------------------";
 
-		reciept = reciept + "\nTOTAL";
-		reciept = reciept + spaces(33) + "$" + totalPrice;
+		reciept = reciept + "\nKONKE";
+		reciept = reciept + spaces(37) + "$" + totalPrice;
 
-		reciept = reciept + "\nCASH";
-		reciept = reciept + spaces(34) + "$" + cashGiven;
+		reciept = reciept + "\nIMALI";
+		reciept = reciept + spaces(37) + "$" + cashGiven;
 
-		reciept = reciept + "\nCHANGE DUE";
-		reciept = reciept + spaces(28) + "$" + (cashGiven - totalPrice);
+		reciept = reciept + "\nSHINTSHA NGENXA";
+		reciept = reciept + spaces(27) + "$" + (cashGiven - totalPrice);
 
 		Date today = Calendar.getInstance().getTime();
 	
 		
-		reciept = reciept + "\n\n\n        Thank you, please come again.\n\n";
+		reciept = reciept + "\n\n\n            Ngiyabonga, ngicela ubuye.\n\n";
 		
-		reciept = reciept + "    || |||| ||||||| |||||| ||||| ||||||||\n";
-		reciept = reciept + "    || |||| ||||||| |||||| ||||| ||||||||\n\n";
+		reciept = reciept + "      || |||| ||||||| |||||| ||||| ||||||||\n";
+		reciept = reciept + "      || |||| ||||||| |||||| ||||| ||||||||\n\n";
 		
 		reciept = reciept + "        " + today +"\n";
 		
@@ -84,3 +85,4 @@ public class Receipt {
 	}
 
 }
+
