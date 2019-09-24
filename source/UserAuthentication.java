@@ -22,16 +22,19 @@ public class UserAuthentication
 				exit();
 				validation = false;
 			}
-			if (robot_check == 4)
+			if (robot_check >= 3)
 			{
 				System.out.println("Too many failed attempts. You are suspected of being a robot");
-				System.out.println("You will not be locked out of the system.");
+				System.out.println("You will now be locked out of the system.");
+				robot_check = 0;
+				exit();
+				validation = false;
 			}
 			else 
 			{
 				System.out.println("Invalid Input. Please try again");
 				robot_check += 1;
-				System.out.println(robot_check);
+				System.out.println("Failed Attempts: " + robot_check);
 			}
 		}
 	}
