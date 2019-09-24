@@ -9,11 +9,13 @@ public class UserAuthentication
 	double robot_check = 0;
 	String username;
 	String password;
+	String current_user;
+	String current_password;
 	profile[] profileList = new profile[0];
 
 	public void UserAuthentication()
 	{
-		while (!validation)
+		while (validation == false)
 		{
 			System.out.println("");
 			System.out.println("==========================================================");
@@ -22,6 +24,15 @@ public class UserAuthentication
 			System.out.println("L - Login / S - Sign_up / E - Exit");
 			
 			user_input = input.nextLine();
+			if (user_input.equalsIgnoreCase("L"))
+			{
+				login();
+				if (flag == true)
+				{
+					validation = true;
+				}
+			}
+			
 			if (user_input.equalsIgnoreCase("S"))
 			{
 				System.out.println("Lets create a new user login for you");
@@ -34,7 +45,6 @@ public class UserAuthentication
 			if (user_input.equalsIgnoreCase("E"))
 			{
 				exit();
-				validation = false;
 			}
 			
 			if (robot_check >= 3)
@@ -43,19 +53,17 @@ public class UserAuthentication
 				System.out.println("You will now be locked out of the system.");
 				robot_check = 0;
 				exit();
-				validation = false;
 			}
 			
-			if (user_input.equalsIgnoreCase("list"))
+			if (user_input.equalsIgnoreCase("Admin"))
 			{
 				System.out.println(toString());
+				continue;
 			}
 			
-			else 
+			if (validation == false)
 			{
-				System.out.println("Invalid Input. Please try again.");
-				robot_check += 1;
-				System.out.println("Failed Attempts: " + robot_check);
+				robotCheck();
 			}
 			
 		}
@@ -67,6 +75,44 @@ public class UserAuthentication
 		System.out.println("We hope to see you next time, bye for now!");
 		System.exit(0);
 	}
+	public void login() 
+	{
+		boolean found_user = false;
+		String correct_password = "123";
+		System.out.println("Please enter username: ");
+		this.current_user = input.nextLine();
+		int next;
+		for (next = 0; next < profileList.length; next++)
+		{
+			if (profileList[next].getUsername().equals(current_user))
+			{
+				System.out.println("");
+				System.out.println("User found in system");
+				System.out.println("");
+				correct_password = profileList[next].getPassword();
+				found_user = true;
+			}
+		}
+		if (found_user == false)
+		{
+			System.out.println("User not found, suspected robot");
+		}
+		
+		if (found_user == true)
+		{
+			System.out.println("Please enter password: ");
+			this.current_password = input.nextLine();
+			if (current_password.equals(correct_password))
+			{
+				System.out.println("Login Successful");
+				flag = true;
+			}
+			else
+			{
+				System.out.println("Invalid Password");
+			}
+		}
+	}
 	
 	public void signUp()
 	{
@@ -77,6 +123,12 @@ public class UserAuthentication
 		profile newProfile = new profile(username, password);
 		userFabrication(newProfile);
 		System.out.println(newProfile.toString());
+	}
+	public void robotCheck()
+	{
+		System.out.println("Invalid Input. Please try again.");
+		robot_check += 1;
+		System.out.println("Failed Attempts: " + robot_check);
 	}
 	
 	public void userFabrication(profile newprofile)
@@ -94,7 +146,7 @@ public class UserAuthentication
 	public String toString() 
 	{
 		String value = "";
-		for (int i=0;i<profileList.length;i++) 
+		for (int i = 0; i < profileList.length; i++) 
 		{
 			value += profileList[i].toString()+"\n";
 		}
@@ -112,9 +164,17 @@ class profile
 		this.username = username;
 		this.password = password;
 	}
+	public String getUsername()
+	{
+		return username;
+	}
+	public String getPassword()
+	{
+		return password;
+	}
 	
 	public String toString() 
 	{
-		return "New User Profile [name=" + username + ", password=" + password + "]";
+		return "New User Profile [name = " + username + ", password = " + password + "]";
 	}
 }
