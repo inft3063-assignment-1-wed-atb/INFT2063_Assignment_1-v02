@@ -17,6 +17,9 @@ public class CashRegister {
 		
 		Receipt receipt = new Receipt();
 		
+		UserAuthentication userAuthentication = new UserAuthentication();
+		userAuthentication.UserAuthentication();
+		
 		Scanner in = new Scanner(System.in);
 
 		System.out.println(".  ..___.    __ .__..  ..___\n" + 
