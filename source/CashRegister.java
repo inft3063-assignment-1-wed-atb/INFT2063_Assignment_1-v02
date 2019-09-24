@@ -19,10 +19,10 @@ public class CashRegister {
 		
 		Scanner in = new Scanner(System.in);
 
-		System.out.println(".  ..___.    __ .__..  ..___\n" + 
-				"|  |[__ |   /  `|  ||\\/|[__ \n" + 
-				"|/\\|[___|___\\__.|__||  |[___\n" + 
-				"                            \n");
+		System.out.println(".  .              .     .         \n" + 
+				"|  |  . _ ._ _ . .;_/ _ |.    , _.\n" + 
+				"|__|\\_|(/,[ | )(_|| \\(/,| \\/\\/ (_]\n" + 
+				"    ._|                           \n");
 		while (!validation) {
 			try {
 				System.out.print("Sicela ufake iflothi lerejista yemali:");
