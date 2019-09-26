@@ -23,6 +23,10 @@ public class Receipt {
 	private ArrayList<Double> subtotal;
 	//Stores the total price of the items
 	private double totalPrice;
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
 	private String space = " ";
 	//Stores the amount of cash that was given
 	private double cashGiven;
