@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
  */
 public class Receipt {
 
+	private String cashier;
 	//The variable in which the receipt will start from
 	private String reciept = "";
 	//An array of all the items for the transaction
@@ -95,7 +97,7 @@ public class Receipt {
 
 		// Information about the grocery story and who the cashier is.
 		reciept = "\nTAX RECIEPT\n" + "UniSA Groceries Pty Ltd\n" + "Shop 3A, 40 Main Street, Mawson Lakes, SA\n"
-				+ "ABN 23 234 680 230\nCashier: Jeusus\n" + "\n";
+				+ "ABN 23 234 680 230\nCashier: "+ cashier + "\n" + "\n";
 
 		// Adding in the title for each required information such as: item, quantity,
 		// price,
@@ -122,6 +124,11 @@ public class Receipt {
 
 		reciept = reciept + "\nCHANGE DUE";
 		reciept = reciept + spaces(28) + "$" + (cashGiven - totalPrice);
+		
+		// for rounding
+		DecimalFormat value = new DecimalFormat("#.#");
+		// gst info
+		reciept+= "\n\nTOTAL includes GST " + spaces(19) + "$" + value.format(totalPrice * 0.10);
 
 		//Stores the date when the reciept was printed
 		Date today = Calendar.getInstance().getTime();
@@ -152,6 +159,10 @@ public class Receipt {
 
 		return reciept;
 
+	}
+
+	public void setCashier(String cashier) {
+		this.cashier = cashier;
 	}
 }
 

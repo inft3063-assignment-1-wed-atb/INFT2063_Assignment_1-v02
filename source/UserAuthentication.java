@@ -8,8 +8,12 @@ public class UserAuthentication
 	boolean flag = false;
 	double robot_check = 0;
 	String username;
+	public String getCurrent_user() {
+		return current_user;
+	}
+
 	String password;
-	String current_user;
+	private String current_user;
 	String current_password;
 	profile[] profileList = new profile[0];
 

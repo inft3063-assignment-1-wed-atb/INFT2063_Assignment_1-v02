@@ -48,6 +48,7 @@ public class CashRegister {
 
 			if (proceed.equalsIgnoreCase("y")) {
 				// new transactions set every validation to default
+				receipt.setCashier(userAuthentication.getCurrent_user());
 				paymentComplete = false;
 				nextItem = true;
 				recieptEnd = false;
