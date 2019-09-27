@@ -87,14 +87,14 @@ public class CashRegister {
 				while (!validation) {
 					try {
 						// payment unsuccessful or not completed
-						while(!paymentComplete) {
+						while (!paymentComplete) {
 							// List of payment options
-							System.out.println("Please Choose the type of payment \n"
-									+ "1. Cash \n2. Bank Card \n3. Gift Card");
+							System.out.println(
+									"Please Choose the type of payment \n" + "1. Cash \n2. Bank Card \n3. Gift Card");
 							String paymentType = in.nextLine();
-							switch(paymentType) {
+							switch (paymentType) {
 							// payment type is cash
-							case "1":{
+							case "1": {
 								// Ask for cash tendered, pass into receipt
 								System.out.print("Please enter the cash amount tendered:");
 								s = in.nextLine();
@@ -110,8 +110,10 @@ public class CashRegister {
 
 							}
 							// Payment type is bank card
-							case "2":{
-								System.out.println("Payment by Bank Card");
+							case "2": {
+								System.out.println("Payment by Bank Card Selected");
+								// Processing payment
+								CashRegister.processPayment();
 								// Cash received is equal to the total price
 								receipt.cash(receipt.getTotalPrice());
 								c = Double.toString(balance + totalCost);
@@ -120,8 +122,10 @@ public class CashRegister {
 								break;
 							}
 							// Payment type is gift card
-							case "3":{
-								System.out.println("Payment by Gift Card");
+							case "3": {
+								System.out.println("Payment by Gift Card Selected");
+								// Processing payment
+								CashRegister.processPayment();
 								// Cash received is equal to the total price
 								receipt.cash(receipt.getTotalPrice());
 								c = Double.toString(balance + totalCost);
@@ -130,17 +134,14 @@ public class CashRegister {
 								break;
 							}
 							// user type other than 1,2 and 3 which are options for different payment type
-							default:{
-								System.out.println("Please choose 1, 2 or 3 from the option.");
-								System.out.println("Please Choose the type of payment \n"
-										+ "1. Cash \n2. Bank Card \n3. Gift Card");
-								paymentType = in.nextLine();
+							default: {
+								System.out.println("Please choose 1, 2 or 3 from the following options:");
 								break;
 							}
 							}
-						
+
 						}
-					} catch(Exception e) {
+					} catch (Exception e) {
 						System.out.println("Invalid input, please enter a appropriate value.");
 					}
 				}
@@ -179,6 +180,25 @@ public class CashRegister {
 
 		}
 
+	}
+	
+	/**
+	 * Process the payment by bank card or by gift cards.
+	 * 
+	 * @throws InterruptedException 
+	 * 
+	 */
+	public static void processPayment() throws InterruptedException {
+		System.out.print("\nProcessing Payment ");
+		// Loop to print .
+		for (int x = 0; x < 20; x++) {
+			System.out.print(". ");
+			// timer between two . print
+			Thread.sleep(350);
+		}
+		System.out.println("\n +-+ +-+ +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+\n"
+				+ " |P| |A| |Y| |M| |E| |N| |T|   |S| |U| |C| |C| |E| |S| |S| |F| |U| |L|\n"
+				+ " +-+ +-+ +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+\n");
 	}
 }
 
