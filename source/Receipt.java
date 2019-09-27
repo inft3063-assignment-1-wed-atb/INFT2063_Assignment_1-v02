@@ -25,6 +25,8 @@ public class Receipt {
 	private ArrayList<Double> subtotal;
 	//Stores the total price of the items
 	private double totalPrice;
+	// date of receipt
+	private Date today = Calendar.getInstance().getTime();
 	public double getTotalPrice() {
 		return totalPrice;
 	}
@@ -62,6 +64,10 @@ public class Receipt {
 		// Adds the subtotal so far to the subtotal array
 		subtotal.add(totalPrice);
 
+	}
+
+	public ArrayList<Integer> getQuantity() {
+		return quantity;
 	}
 
 	/**
@@ -130,8 +136,6 @@ public class Receipt {
 		// gst info
 		reciept+= "\n\nTOTAL includes GST " + spaces(19) + "$" + value.format(totalPrice * 0.10);
 
-		//Stores the date when the reciept was printed
-		Date today = Calendar.getInstance().getTime();
 
 		reciept = reciept + "\n\n\n        Thank you, please come again.\n\n";
 
@@ -159,6 +163,18 @@ public class Receipt {
 
 		return reciept;
 
+	}
+
+	public ArrayList<String> getItems() {
+		return items;
+	}
+
+	public String getCashier() {
+		return cashier;
+	}
+
+	public Date getToday() {
+		return today;
 	}
 
 	public void setCashier(String cashier) {

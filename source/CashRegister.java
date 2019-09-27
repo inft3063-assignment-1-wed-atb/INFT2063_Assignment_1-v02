@@ -14,7 +14,8 @@ public class CashRegister {
 		
 		boolean nextItem = true;
 		double totalCost = 0;
-		
+		// reports
+		Report report = new Report();
 		Receipt receipt = new Receipt();
 		
 		UserAuthentication userAuthentication = new UserAuthentication();
@@ -152,6 +153,7 @@ public class CashRegister {
 				
 				while (!recieptEnd) {
 
+					report.getReceipt().add(receipt);
 					System.out.println("Would you like a copy of your reciept? (y/n)");
 					proceed = in.nextLine();
 					
@@ -172,6 +174,7 @@ public class CashRegister {
 
 			else if (proceed.equalsIgnoreCase("n")) {
 				System.out.println("Balance of the Cash Register: " + dollar_symbol + c);
+				report.printReport();
 				endProgram = true;
 			}
 
