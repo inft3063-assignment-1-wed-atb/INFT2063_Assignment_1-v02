@@ -13,26 +13,27 @@ import java.util.Date;
 public class Receipt {
 
 	private String cashier;
-	//The variable in which the receipt will start from
+	// The variable in which the receipt will start from
 	private String reciept = "";
-	//An array of all the items for the transaction
+	// An array of all the items for the transaction
 	private ArrayList<String> items;
-	//An array for the item price of the transactions
+	// An array for the item price of the transactions
 	private ArrayList<Double> itemPrice;
-	//An array to store the quantity of the items
+	// An array to store the quantity of the items
 	private ArrayList<Integer> quantity;
-	//An array to store the subtotal 
+	// An array to store the subtotal
 	private ArrayList<Double> subtotal;
-	//Stores the total price of the items
+	// Stores the total price of the items
 	private double totalPrice;
 	// date of receipt
 	private Date today = Calendar.getInstance().getTime();
+
 	public double getTotalPrice() {
 		return totalPrice;
 	}
 
 	private String space = " ";
-	//Stores the amount of cash that was given
+	// Stores the amount of cash that was given
 	private double cashGiven;
 
 	/**
@@ -103,7 +104,7 @@ public class Receipt {
 
 		// Information about the grocery story and who the cashier is.
 		reciept = "\nTAX RECIEPT\n" + "UniSA Groceries Pty Ltd\n" + "Shop 3A, 40 Main Street, Mawson Lakes, SA\n"
-				+ "ABN 23 234 680 230\nCashier: "+ cashier + "\n" + "\n";
+				+ "ABN 23 234 680 230\nCashier: " + cashier + "\n" + "\n";
 
 		// Adding in the title for each required information such as: item, quantity,
 		// price,
@@ -112,7 +113,8 @@ public class Receipt {
 
 		reciept = reciept + "------------------------------------------------\n";
 
-		//Looping through each different array and adding the required information to each column
+		// Looping through each different array and adding the required information to
+		// each column
 		for (int i = 0; i < items.size(); i++) {
 			reciept = reciept + items.get(i);
 			reciept = reciept + spaces(24 - items.get(i).length()) + quantity.get(i);
@@ -130,30 +132,28 @@ public class Receipt {
 
 		reciept = reciept + "\nCHANGE DUE";
 		reciept = reciept + spaces(28) + "$" + (cashGiven - totalPrice);
-		
+
 		// for rounding
 		DecimalFormat value = new DecimalFormat("#.#");
 		// gst info
-		reciept+= "\n\nTOTAL includes GST " + spaces(19) + "$" + value.format(totalPrice * 0.10);
-
+		reciept += "\n\nTOTAL includes GST " + spaces(19) + "$" + value.format(totalPrice * 0.10);
 
 		reciept = reciept + "\n\n\n        Thank you, please come again.\n\n";
 
-		//The manufactured barcode
+		// The manufactured barcode
 		reciept = reciept + "    || |||| ||||||| |||||| ||||| ||||||||\n";
 		reciept = reciept + "    || |||| ||||||| |||||| ||||| ||||||||\n\n";
 
 		reciept = reciept + "        " + today + "\n";
 
-		//The below block of code creates a new text file and adds the receipt to it.
-		//Used to allow the user to be able to create a copy to print a hard copy of
-		//the receipt.
+		// The below block of code creates a new text file and adds the receipt to it.
+		// Used to allow the user to be able to create a copy to print a hard copy of
+		// the receipt.
 		PrintWriter outputStream = null;
 
 		try {
 			outputStream = new PrintWriter(new FileOutputStream("receipt.txt"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -173,6 +173,10 @@ public class Receipt {
 		return cashier;
 	}
 
+	public void setToday(Date today) {
+		this.today = today;
+	}
+
 	public Date getToday() {
 		return today;
 	}
@@ -181,4 +185,3 @@ public class Receipt {
 		this.cashier = cashier;
 	}
 }
-

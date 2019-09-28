@@ -1,75 +1,122 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Report {
 	private ArrayList<Receipt> receipt = new ArrayList<Receipt>();
-
+	// String version of the report
+	private String report = "";
 	private double totalSales = 0;
 	private int totalItem = 0;
+	// Starting cash register balance set 0;
+	private String balanceCashRegister = "0";
+	private double startBalance = 0;
 
-	public static void main(String[] args) {
-		Report r = new Report();
-		r.receipt.add(new Receipt());
-		r.receipt.get(0).itemDetails("Noodle box", 100, 2);
-		r.receipt.get(0).setCashier("DIck");
-		r.receipt.get(0).itemDetails("ff", 10000, 1);
-		r.receipt.add(new Receipt());
-		r.receipt.get(1).itemDetails("ff", 200, 2);
-		r.receipt.get(1).setCashier("Rick");
-		;
-
-		r.printReport();
+	/**
+	 * Set the starting cash register balance
+	 * 
+	 * @param startBalance starting balance
+	 */
+	public void setStartBalance(double startBalance) {
+		this.startBalance = startBalance;
 	}
 
-	public void printReport() {
+	/**
+	 * get the balance of the cash register
+	 * 
+	 * @return cash register balance
+	 */
+	public String getBalanceCashRegister() {
+		return balanceCashRegister;
+	}
+
+	/**
+	 * Set the balance of the cash register
+	 * 
+	 * @param c new cash register balance
+	 */
+	public void setBalanceCashRegister(String c) {
+		this.balanceCashRegister = c;
+	}
+
+	/**
+	 * Return the string representation of the report
+	 * @return string representation of the report
+	 */
+	public String printReport() {
 		// Company Information
-		System.out.println("\n____ ____ ___  ____ ____ ___ \n" + "|__/ |___ |__] |  | |__/  |  \n"
+		report += "\n" + spaces(55, "*") + "\n____ ____ ___  ____ ____ ___ \n" + "|__/ |___ |__] |  | |__/  |  \n"
 				+ "|  \\ |___ |    |__| |  \\  |  \n" + "                             \nUniSA Groceries Pty Ltd\n"
-				+ "Shop 3A, 40 Main Street, Mawson Lakes, SA\n" + "ABN 23 234 680 230\n" + spaces(55, "*") + "\n");
+				+ "Shop 3A, 40 Main Street, Mawson Lakes, SA\n" + "ABN 23 234 680 230\n\n" + spaces(55, "*") + "\n";
 		// No receipt available, no sales
 		if (receipt == null) {
-			System.out.println("\n\nNO SALES INFORMATION AVAILABLE");
+			report += "\n\nNO SALES INFORMATION AVAILABLE";
 			// receipt found print report
 		} else {
-			// print sales information
-			System.out.println("+++SALES+++\n" + spaces(55, "-"));
-			System.out.println("Date & Time" + spaces(19, " ") + "|  Price       | Cashier");
-			System.out.println(spaces(55, "-"));
+			report += "\n" + spaces(43, "<") + "\nStarting balance of the Cash Register: " + "$" + startBalance + "\n"
+					+ spaces(43, ">") + "\n";
+			// add sales information
+			report += "\n+++SALES+++\n" + spaces(55, "-");
+			report += "\nDate & Time" + spaces(19, " ") + "|  Sales       | Cashier\n";
+			report += spaces(55, "-") + "\n";
 			// Loop over list of receipt, print receipt date, total price
 			for (Receipt r : receipt) {
-				System.out.println(r.getToday() + "  |  " + r.getTotalPrice()
-				+ spaces(11 - Double.toString(r.getTotalPrice()).length(), " ") + "|  " + r.getCashier());
+				report += (r.getToday() + spaces(30 - r.getToday().toString().length(), " ") + "|  " + r.getTotalPrice()
+						+ spaces(11 - Double.toString(r.getTotalPrice()).length(), " ") + "|  " + r.getCashier()
+						+ "\n");
 				// Add total sales for the system uptime
 				totalSales += r.getTotalPrice();
 			}
-			System.out.println(spaces(55, "-"));
-			System.out.println("Total Sales" + spaces(22, " ") + totalSales);
-			System.out.println(spaces(55, "-"));
+			report += (spaces(55, "-") + "\n");
+			report += ("Total Sales" + spaces(22, " ") + totalSales) + "\n";
+			report += (spaces(55, "-"));
 
 			// Print Inventory report
-			System.out.println("\n\n+++INVENTORY+++\n" + spaces(35, "-"));
-			System.out.println("Item Name" + spaces(13, " ") + "|  Quantity");
-			System.out.println(spaces(35, "-"));
+			report += ("\n\n+++INVENTORY+++\n" + spaces(35, "-") + "\n");
+			report += ("Item Name" + spaces(13, " ") + "|  Quantity\n");
+			report += spaces(35, "-") + "\n";
 			// Loop over receipt, get items and quantity from receipt
 			for (Receipt r : receipt) {
 				ArrayList<String> items = r.getItems();
 				ArrayList<Integer> qnty = r.getQuantity();
 				// Loop over item, get item name and its quantity
 				for (int i = 0; i < items.size(); i++) {
-					// Text length more than 20 abbrebrate
-					System.out.println(abbreviateString(items.get(i), 20)
-							+ spaces(22 - abbreviateString(items.get(i), 20).length(), " ") + "|  " + qnty.get(i));
+					// Text length more than 20 abbrebrate, space between two colum change based on
+					// text length
+					report += abbreviateString(items.get(i), 20)
+							+ spaces(22 - abbreviateString(items.get(i), 20).length(), " ") + "|  " + qnty.get(i)
+							+ "\n";
 					totalItem += qnty.get(i);
 				}
 			}
-			System.out.println(spaces(35, "-"));
-			System.out.println("Total Item" + spaces(15, " ") + totalItem);
-			System.out.println(spaces(35, "-"));
-
-			System.out.println("\n\n +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+\n" + 
-					" |T| |h| |a| |n| |k|   |Y| |o| |u|\n" + 
-					" +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+\n" + 
-					"");
+			report += spaces(35, "-") + "\n";
+			report += "Total Item" + spaces(15, " ") + totalItem + "\n";
+			report += spaces(35, "-");
+			// Adding ending cash register balance and thank you note
+			report += "\n\n" + spaces(36, "<") + "\nBalance of the Cash Register: " + "$" + balanceCashRegister + "\n"
+					+ spaces(36, ">") + "\n";
+			report += "\n\n +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+\n" + " |T| |h| |a| |n| |k|   |Y| |o| |u|\n"
+					+ " +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+\n" + "";
 		}
+		// Outputing the report in text file
+		PrintWriter outputStream = null;
+		try {
+			// Date formating for report name
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy HH:mm");
+			// Output name of the report.
+			outputStream = new PrintWriter(
+					new FileOutputStream("report_" + formatter.format(Calendar.getInstance().getTime()) + ".txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		outputStream.println(report);
+
+		outputStream.close();
+		return report;
 
 	}
 
@@ -115,7 +162,7 @@ public class Report {
 	 * @param maxLength allowed maximum length of the string
 	 * @return string with limited characters
 	 */
-	public static String abbreviateString(String input, int maxLength) {
+	private String abbreviateString(String input, int maxLength) {
 		// string length less than maximum, return string otherwise truncate add ..
 		if (input.length() <= maxLength)
 			return input;

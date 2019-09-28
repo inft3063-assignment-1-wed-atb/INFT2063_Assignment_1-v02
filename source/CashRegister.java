@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class CashRegister {
@@ -11,7 +12,7 @@ public class CashRegister {
 		boolean validation = false;
 		boolean paymentComplete = false;
 		boolean recieptEnd = false;
-		
+		double totalSale = 0;
 		boolean nextItem = true;
 		double totalCost = 0;
 		// reports
@@ -32,6 +33,8 @@ public class CashRegister {
 				System.out.print("Please enter cash register's float:");
 				s = in.nextLine();
 				balance = Double.parseDouble(s);
+				report.setStartBalance(balance);
+				
 				validation = true;
 			
 			} catch(Exception e) {
@@ -41,16 +44,15 @@ public class CashRegister {
 		validation = false;
 
 		while (!endProgram) {
-			
-			
-
 			System.out.println("Would you like to proceed with the transaction? (y/n)");
 			proceed = in.nextLine();
 
 			if (proceed.equalsIgnoreCase("y")) {
 				// new transactions set every validation to default
+				receipt = new Receipt();;
 				receipt.setCashier(userAuthentication.getCurrent_user());
 				paymentComplete = false;
+				totalCost =0;
 				nextItem = true;
 				recieptEnd = false;
 				// until the cart is empty/has next item
@@ -100,12 +102,18 @@ public class CashRegister {
 								// Ask for cash tendered, pass into receipt
 								System.out.print("Please enter the cash amount tendered:");
 								s = in.nextLine();
+								while(Double.parseDouble(s) < totalCost) {
+									System.out.println("<<* Cash tendered is less than total cost *>>\n");
+									System.out.print("Please enter the cash amount tendered:");
+									s = in.nextLine();
+								}
 								receipt.cash(Double.parseDouble(s));
 								c = Double.toString(Double.parseDouble(s) - totalCost);
 
 								System.out.println("Amount of change required = " + dollar_symbol + c);
 
 								c = Double.toString(balance + totalCost);
+								totalSale += totalCost;
 								paymentComplete = true;
 								validation = true;
 								break;
@@ -119,6 +127,7 @@ public class CashRegister {
 								// Cash received is equal to the total price
 								receipt.cash(receipt.getTotalPrice());
 								c = Double.toString(balance + totalCost);
+								totalSale += totalCost;
 								paymentComplete = true;
 								validation = true;
 								break;
@@ -131,6 +140,7 @@ public class CashRegister {
 								// Cash received is equal to the total price
 								receipt.cash(receipt.getTotalPrice());
 								c = Double.toString(balance + totalCost);
+								totalSale += totalCost;
 								validation = true;
 								paymentComplete = true;
 								break;
@@ -149,10 +159,10 @@ public class CashRegister {
 				}
 				validation = false;
 						
-				
-				
 				while (!recieptEnd) {
-
+					// Changing receipt date to the current date & time
+					receipt.setToday(Calendar.getInstance().getTime());
+					// Adding receipt to the report
 					report.getReceipt().add(receipt);
 					System.out.println("Would you like a copy of your reciept? (y/n)");
 					proceed = in.nextLine();
@@ -168,13 +178,12 @@ public class CashRegister {
 						System.out.println("Invalid input. Please try again");
 					}
 				}
-				
-
 			}
 
 			else if (proceed.equalsIgnoreCase("n")) {
-				System.out.println("Balance of the Cash Register: " + dollar_symbol + c);
-				report.printReport();
+				report.setBalanceCashRegister(Double.toString(totalSale+ balance));
+				
+				System.out.println(report.printReport());
 				endProgram = true;
 			}
 
@@ -183,6 +192,8 @@ public class CashRegister {
 			}
 
 		}
+		// Closing scanner
+		in.close();
 
 	}
 	
@@ -193,7 +204,7 @@ public class CashRegister {
 	 * 
 	 */
 	public static void processPayment() throws InterruptedException {
-		System.out.print("\nProcessing Payment ");
+		System.out.print("\n>>Processing Payment ");
 		// Loop to print .
 		for (int x = 0; x < 20; x++) {
 			System.out.print(". ");
