@@ -27,6 +27,7 @@ public class Receipt {
 	private double totalPrice;
 	// date of receipt
 	private Date today = Calendar.getInstance().getTime();
+	private String[] userInfo;
 
 	public double getTotalPrice() {
 		return totalPrice;
@@ -71,6 +72,10 @@ public class Receipt {
 		return quantity;
 	}
 
+	public void getUserInfo(String[] users) {
+		this.userInfo = users;
+	}
+
 	/**
 	 * This method is purely used for the format and structure of the receipt. It
 	 * adds empty spaces between each column in the receipt.
@@ -103,8 +108,11 @@ public class Receipt {
 	public String printReciept() {
 
 		// Information about the grocery story and who the cashier is.
-		reciept = "\nTAX RECIEPT\n" + "UniSA Groceries Pty Ltd\n" + "Shop 3A, 40 Main Street, Mawson Lakes, SA\n"
-				+ "ABN 23 234 680 230\nCashier: " + cashier + "\n" + "\n";
+		reciept = "\n" + spaces(spaceCentreText("TAX RECIEPT")-1) + "TAX RECIEPT\n" + spaces(spaceCentreText("UniSA Groceries Pty Ltd")-1)  
+		+"UniSA Groceries Pty Ltd\n" + spaces(spaceCentreText("Shop 3A, 40 Main Street, Mawson Lakes, SA")-1) 
+		+ "Shop 3A, 40 Main Street, Mawson Lakes, SA\n" + spaces(spaceCentreText("ABN 23 234 680 230")-1)  +"ABN 23 234 680 230\n"
+		+ spaces(spaceCentreText("Cashier: " + cashier)-1) + "Cashier: " + cashier + "\n"
+				+ "\n";
 
 		// Adding in the title for each required information such as: item, quantity,
 		// price,
@@ -134,17 +142,47 @@ public class Receipt {
 		reciept = reciept + spaces(28) + "$" + (cashGiven - totalPrice);
 
 		// for rounding
-		DecimalFormat value = new DecimalFormat("#.#");
+		DecimalFormat value = new DecimalFormat("#.00");
 		// gst info
 		reciept += "\n\nTOTAL includes GST " + spaces(19) + "$" + value.format(totalPrice * 0.10);
 
-		reciept = reciept + "\n\n\n        Thank you, please come again.\n\n";
+		// Checks to see if the user has inputted a loyalty card or not. If they have
+		// the loyalty card info will be shown.
+		if (userInfo != null) {
 
+			reciept = reciept + "\n\n************************************************"; // 48
+
+			String text = "UniSA Loyalty Program";
+
+			reciept = reciept + "\n" + spaces(spaceCentreText(text)-1) + text;
+
+			text = "Member No: " + userInfo[0];
+
+			reciept = reciept + "\n" + spaces(spaceCentreText(text)-1) + text;
+
+			text = "Points earned today: " + Math.floor(totalPrice / 10);
+
+			reciept = reciept + "\n" + spaces(spaceCentreText(text)-1) + text;
+
+			text = "Current balance: " + userInfo[2];
+
+			reciept = reciept + "\n" + spaces(spaceCentreText(text)-1) + text;
+
+			reciept = reciept + "\n\n************************************************";
+
+		}
+
+		reciept = reciept + "\n\n" + spaces(spaceCentreText("Thank you, please come again.")-1) +"Thank you, please come again.\n\n";
+
+		String barcode = "|| |||| ||||||| |||||| ||||| ||||||||";
+		
 		// The manufactured barcode
-		reciept = reciept + "    || |||| ||||||| |||||| ||||| ||||||||\n";
-		reciept = reciept + "    || |||| ||||||| |||||| ||||| ||||||||\n\n";
+		reciept = reciept + spaces(spaceCentreText(barcode)-1) + barcode +"\n";
+		reciept = reciept + spaces(spaceCentreText(barcode)-1) + barcode +"\n";
+		
+		int length = today.toString().length();
 
-		reciept = reciept + "        " + today + "\n";
+		reciept = reciept + spaces(((48-length)/2)-1) +today +"\n";
 
 		// The below block of code creates a new text file and adds the receipt to it.
 		// Used to allow the user to be able to create a copy to print a hard copy of
@@ -184,4 +222,11 @@ public class Receipt {
 	public void setCashier(String cashier) {
 		this.cashier = cashier;
 	}
+
+	private int spaceCentreText(String text) {
+		int number = 48 - text.length();
+		number = number / 2;
+		return number;
+	}
 }
+
