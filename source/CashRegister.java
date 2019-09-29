@@ -18,26 +18,26 @@ public class CashRegister {
 		// reports
 		Report report = new Report();
 		Receipt receipt = new Receipt();
-		
+		String userNo;
+		loyaltyProgram loyalty = new loyaltyProgram();
+
 		UserAuthentication userAuthentication = new UserAuthentication();
 		userAuthentication.UserAuthentication();
-		
+
 		Scanner in = new Scanner(System.in);
 
-		System.out.println(".  ..___.    __ .__..  ..___\n" + 
-				"|  |[__ |   /  `|  ||\\/|[__ \n" + 
-				"|/\\|[___|___\\__.|__||  |[___\n" + 
-				"                            \n");
+		System.out.println(".  ..___.    __ .__..  ..___\n" + "|  |[__ |   /  `|  ||\\/|[__ \n"
+				+ "|/\\|[___|___\\__.|__||  |[___\n" + "                            \n");
 		while (!validation) {
 			try {
 				System.out.print("Please enter cash register's float:");
 				s = in.nextLine();
 				balance = Double.parseDouble(s);
 				report.setStartBalance(balance);
-				
+
 				validation = true;
-			
-			} catch(Exception e) {
+
+			} catch (Exception e) {
 				System.out.println("Invalid input, please enter a appropriate value.");
 			}
 		}
@@ -49,10 +49,11 @@ public class CashRegister {
 
 			if (proceed.equalsIgnoreCase("y")) {
 				// new transactions set every validation to default
-				receipt = new Receipt();;
+				receipt = new Receipt();
+				;
 				receipt.setCashier(userAuthentication.getCurrent_user());
 				paymentComplete = false;
-				totalCost =0;
+				totalCost = 0;
 				nextItem = true;
 				recieptEnd = false;
 				// until the cart is empty/has next item
@@ -66,8 +67,8 @@ public class CashRegister {
 							c = in.nextLine();
 							receipt.itemDetails(s, Double.parseDouble(c), 1);
 							validation = true;
-					
-						} catch(Exception e) {
+
+						} catch (Exception e) {
 							System.out.println("Invalid input, please enter a appropriate value.");
 						}
 					}
@@ -87,6 +88,14 @@ public class CashRegister {
 						nextItem = false;
 					}
 				}
+
+				userNo = loyalty.loyaltyPrompy(totalCost);
+				if (userNo == null) {
+					receipt.getUserInfo(null);
+				} else {
+					receipt.getUserInfo(loyalty.getUserNumber(userNo));
+				}
+
 				// Validation for cash tendered
 				while (!validation) {
 					try {
@@ -102,7 +111,7 @@ public class CashRegister {
 								// Ask for cash tendered, pass into receipt
 								System.out.print("Please enter the cash amount tendered:");
 								s = in.nextLine();
-								while(Double.parseDouble(s) < totalCost) {
+								while (Double.parseDouble(s) < totalCost) {
 									System.out.println("<<* Cash tendered is less than total cost *>>\n");
 									System.out.print("Please enter the cash amount tendered:");
 									s = in.nextLine();
@@ -158,7 +167,7 @@ public class CashRegister {
 					}
 				}
 				validation = false;
-						
+
 				while (!recieptEnd) {
 					// Changing receipt date to the current date & time
 					receipt.setToday(Calendar.getInstance().getTime());
@@ -166,23 +175,21 @@ public class CashRegister {
 					report.getReceipt().add(receipt);
 					System.out.println("Would you like a copy of your reciept? (y/n)");
 					proceed = in.nextLine();
-					
+
 					if (proceed.equalsIgnoreCase("y")) {
 						System.out.println(receipt.printReciept());
 						recieptEnd = true;
-					}
-					else if(proceed.equalsIgnoreCase("n")) {
-						recieptEnd=true;
-					}
-					else {
+					} else if (proceed.equalsIgnoreCase("n")) {
+						recieptEnd = true;
+					} else {
 						System.out.println("Invalid input. Please try again");
 					}
 				}
 			}
 
 			else if (proceed.equalsIgnoreCase("n")) {
-				report.setBalanceCashRegister(Double.toString(totalSale+ balance));
-				
+				report.setBalanceCashRegister(Double.toString(totalSale + balance));
+
 				System.out.println(report.printReport());
 				endProgram = true;
 			}
@@ -196,11 +203,11 @@ public class CashRegister {
 		in.close();
 
 	}
-	
+
 	/**
 	 * Process the payment by bank card or by gift cards.
 	 * 
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 * 
 	 */
 	public static void processPayment() throws InterruptedException {
