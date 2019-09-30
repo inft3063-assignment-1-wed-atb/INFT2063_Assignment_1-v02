@@ -1,9 +1,14 @@
-# Features
+# Cash Register Manual
 
-## Feature - User Authentication
+## About the Project
+The cash register software is a program that allows users to process transacation of various items such as groceries and other goods. It includes several important featues such as: an in-built loyalty program where customers can earn points for spending, multiple payment options, printing of receipts (if requested), and an automatically generated summary report of the transacations processed. The software also includes a secure authorisation systems where only authorised users can access the software. 
+
+## Features
+
+### Feature - User Authentication
 The user authentication feature was implemented to protect the cash register program from unauthorised access and act as a way to differentiate between different cashiers. The program stores all existing users and their associated passwords locally in an array. Verification involves comparing the user's input with the existing usernames and passwords held in said array. In an effort to deter brute-forcing attacks and automated password inputs, the feature comes along with a robot check that counts the number of attempts an input has failed. If there have been too many failed attempts, the feature will force close the program.
 
-### Usage
+#### Usage
 
 The User Authentication feature begins with the following options:
 ```java
@@ -26,15 +31,15 @@ It will ask you to select between three options:
     
 * Note: Too many failed attempts will force shut the program.
 
-## Feature - Loyatly Program
-The loyalty program is a feature implemented in the CashRegister program which allows customer to have a loyatly account. The amount of loyalty points that can be accrued depends on how much was spent. In this case, it is 1 point for every $10 spent. Points can then be used to redeem offers such as discounts. The program keeps track of the customers that are part of the loyalty program, their membership number, and their current balance. Users of the software will be given the choice to enter a membership number (to update their existing balance), create a new account, or simply skip if they wish.
+### Feature - Loyalty Program
+The loyalty program is a feature implemented in the CashRegister program which allows customer to have a loyalty account. The amount of loyalty points that can be accrued depends on how much was spent. In this case, it is 1 point for every $10 spent. Points can then be used to redeem offers such as discounts. The program keeps track of the customers that are part of the loyalty program, their membership number, and their current balance. Users of the software will be given the choice to enter a membership number (to update their existing balance), create a new account, or simply skip if they wish.
 
-### Usage
+#### Usage
 
-After the last item has been added to the checkout, a prompy will display with the following options underneath:
+After the last item has been added to the checkout, a prompt will display with the following options underneath:
 
 ```java
-Do you have a UniSA Loyatly Card?
+Do you have a UniSA Loyalty Card?
 > Y - Yes, C - Create, Enter - Skip
 ```
 It will ask you to select between three options:
@@ -46,7 +51,7 @@ It will ask you to select between three options:
 *  **(2) C - Create**
     * User will be prompted to enter in the customer's **name**.
     * The program will then create an account for that customer.
-    * It will then automatically add the required loyatly points to the account and return back to the cash register program.
+    * It will then automatically add the required loyalty points to the account and return back to the cash register program.
 
 *  **(3) Enter - Skip**
     * Choosing this option will ignore the first two options and continue with the program
