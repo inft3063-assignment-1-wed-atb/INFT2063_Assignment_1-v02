@@ -34,6 +34,10 @@ public class Receipt {
 	// A string to store the receipt's number
 	private String receiptNumber = "0";
 
+	/**
+	 * Method to get the total price
+	 * @return totalPrice
+	 */
 	public double getTotalPrice() {
 		return totalPrice;
 	}
@@ -73,10 +77,16 @@ public class Receipt {
 
 	}
 
+	/**
+	 * @return an array containing the quantity of each item
+	 */
 	public ArrayList<Integer> getQuantity() {
 		return quantity;
 	}
 
+	/**
+	 * @param users An array containing the users loyatly account info
+	 */
 	public void getUserInfo(String[] users) {
 		this.userInfo = users;
 	}
@@ -96,6 +106,9 @@ public class Receipt {
 		return space;
 	}
 	
+	/**
+	 * @param number the Reciept number
+	 */
 	public void transNo(String number) {
 		receiptNumber = number;
 	}
@@ -221,31 +234,53 @@ public class Receipt {
 
 	}
 
+	/**
+	 * @return An array of the name of the items in the transaction 
+	 */
 	public ArrayList<String> getItems() {
 		return items;
 	}
 
+	/**
+	 * @return The name of the cashier
+	 */
 	public String getCashier() {
 		return cashier;
 	}
 
+	/**
+	 * @param today The date of today
+	 */
 	public void setToday(Date today) {
 		this.today = today;
 	}
 
+	/**
+	 * @return The date of today
+	 */
 	public Date getToday() {
 		return today;
 	}
 
+	/**
+	 * Sets the name of the cashier
+	 * @param cashier
+	 */
 	public void setCashier(String cashier) {
 		this.cashier = cashier;
 	}
 
+	/**
+	 * Centers the text for aesthetic reasons 
+	 * @param text The text to be centered
+	 * @return The centered text
+	 */
 	private int spaceCentreText(String text) {
 		int number = 48 - text.length();
 		number = number / 2;
 		return number;
 	}
 }
+
 
 
