@@ -17,6 +17,8 @@ public class CashRegister {
 		double totalCost = 0;
 		//quantiy of items
 		String quantity ="0";
+		// Transacation number
+		String transNo = "0000";
 		// reports
 		Report report = new Report();
 		Receipt receipt = new Receipt();
@@ -138,6 +140,10 @@ public class CashRegister {
 						s = in.nextLine();
 					}
 					if (s.equalsIgnoreCase("y")) {
+						//updates the transaction number for the receipt 
+						int transNumber = Integer.parseInt(transNo) +1;
+						transNo = String.format("%04d", transNumber); 
+						receipt.transNo(transNo);
 						nextItem = false;
 					}
 				}
@@ -276,5 +282,6 @@ public class CashRegister {
 				+ " +-+ +-+ +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+\n");
 	}
 }
+
 
 

@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,7 +29,10 @@ public class Receipt {
 	private double totalPrice;
 	// date of receipt
 	private Date today = Calendar.getInstance().getTime();
+	// Array of the user account info
 	private String[] userInfo;
+	// A string to store the receipt's number
+	private String receiptNumber = "0";
 
 	public double getTotalPrice() {
 		return totalPrice;
@@ -90,6 +94,10 @@ public class Receipt {
 			space = space + " ";
 		}
 		return space;
+	}
+	
+	public void transNo(String number) {
+		receiptNumber = number;
 	}
 
 	/**
@@ -184,6 +192,8 @@ public class Receipt {
 		int length = today.toString().length();
 
 		reciept = reciept + spaces(((48-length)/2)-1) +today +"\n";
+		
+		reciept = reciept + spaces(spaceCentreText("Transaction Number: " + receiptNumber)-1) +"Transaction Number: " + receiptNumber + "\n";
 
 		// The below block of code creates a new text file and adds the receipt to it.
 		// Used to allow the user to be able to create a copy to print a hard copy of
@@ -191,9 +201,14 @@ public class Receipt {
 		PrintWriter outputStream = null;
 
 		try {
+			
+			// A string for dynamic receipt name
+			String receiptName = new SimpleDateFormat("yyyy-MM-dd-hhmm'_"+receiptNumber+".txt'").format(new Date());
+			receiptName = "Receipt_" + receiptName; 
+			
 			// Creating export folder if not exist
 			new File("Receipt").mkdir();
-			outputStream = new PrintWriter(new FileOutputStream("./Receipt/receipt.txt"));
+			outputStream = new PrintWriter(new FileOutputStream("./Receipt/" + receiptName));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -232,4 +247,5 @@ public class Receipt {
 		return number;
 	}
 }
+
 
