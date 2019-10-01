@@ -24,6 +24,7 @@ public class CashRegister {
 		Receipt receipt = new Receipt();
 		String userNo;
 		loyaltyProgram loyalty = new loyaltyProgram();
+		String startTrans = "Would you like to proceed with the transaction? (y/n)";
 
 		UserAuthentication userAuthentication = new UserAuthentication();
 		userAuthentication.UserAuthentication();
@@ -34,7 +35,7 @@ public class CashRegister {
 				+ "|/\\|[___|___\\__.|__||  |[___\n" + "                            \n");
 		while (!validation) {
 			try {
-				System.out.print("Please enter cash register's float:");
+				System.out.print("Please enter starting cash register balance:");
 				primary_input = input.nextLine();
 				balance = Double.parseDouble(primary_input);
 				// validate amount not less than 0
@@ -58,7 +59,7 @@ public class CashRegister {
 		validation = false;
 
 		while (!endProgram) {
-			System.out.println("Would you like to proceed with the transaction? (y/n)");
+			System.out.println(startTrans);
 			proceed = input.nextLine();
 
 			if (proceed.equalsIgnoreCase("y")) {
@@ -82,7 +83,7 @@ public class CashRegister {
 					// check for input other than int
 					while (!validation) {
 						try {
-							System.out.print("Please enter the item's cost: ");
+							System.out.print("Please enter the " + primary_input + "'s cost: ");
 							auxiliary_input = input.nextLine();
 							// validate item cost not less than 0
 							if (Double.parseDouble(auxiliary_input) < 0) {
@@ -103,7 +104,7 @@ public class CashRegister {
 					//Asking for quantity of items 
 					while (!validation) {
 						try {
-							System.out.print("Please enter quantity of the item:");
+							System.out.print("Please enter quantity of the " + primary_input + ":");
 							quantity = input.nextLine();
 							// validate quantity not less than 0
 							if (Double.parseDouble(quantity) < 0) {
@@ -160,7 +161,7 @@ public class CashRegister {
 						while (!paymentComplete) {
 							// List of payment options
 							System.out.println(
-									"Please Choose the type of payment \n" + "1. Cash \n2. Bank Card \n3. Gift Card");
+									"Please select the type of payment \n" + "1. Cash \n2. Bank Card \n3. Gift Card");
 							String paymentType = input.nextLine();
 							switch (paymentType) {
 							// payment type is cash
@@ -255,6 +256,7 @@ public class CashRegister {
 				System.out.println("Invalid input. Please try again");
 			}
 
+			startTrans = "Would you like to process another transaction? (y/n)";
 		}
 		// Closing scanner
 		input.close();
@@ -280,6 +282,7 @@ public class CashRegister {
 				+ " +-+ +-+ +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+\n");
 	}
 }
+
 
 
 
