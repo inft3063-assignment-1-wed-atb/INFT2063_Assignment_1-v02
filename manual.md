@@ -3,6 +3,25 @@
 ## About the Project
 The cash register software is a program that allows users to process transacation of various items such as groceries and other goods. It includes several important featues such as: an in-built loyalty program where customers can earn points for spending, multiple payment options, printing of receipts (if requested), and an automatically generated summary report of the transacations processed. The software also includes a secure authorisation systems where only authorised users can access the software. 
 
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About the Project](#about-the-project)  
+* [Getting started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Features](#features)
+  * [Feature - User Authentication](#feature---user-authentication)
+  * [Feature - Loyalty Program](#feature---loyalty-program)
+  * [Feature - Reporting](#feature---loyalty-program)
+  * [Feature – Payment](#feature---payment)
+
+# Getting started
+
+## Prerequisites
+
+## Installation
+
 ## Features
 
 ### Feature - User Authentication
@@ -56,7 +75,7 @@ It will ask you to select between three options:
 *  **(3) Enter - Skip**
     * Choosing this option will ignore the first two options and continue with the program
 
-### Feature – Payment
+### Feature - Payment
 The system supports three different methods of payment. Customers can pay by bank card, cash or by gift card. When the customer chooses to pay by bank card or by gift card, the system awaits the customer to issue the card to the EFTPOS machine to process the payment. The system does not record any of the customer’s bank card or gift card details and link them directly to the customer’s bank or the gift card system. If the customer wants to pay by cash, the amount tendered is recorded and the required change is calculated by the system. It is validated if the customer is paying the total cost of the item when making payments. 
 
 ### Usage: 
