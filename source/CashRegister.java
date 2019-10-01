@@ -15,14 +15,18 @@ public class CashRegister {
 		double totalSale = 0;
 		boolean nextItem = true;
 		double totalCost = 0;
+		//quantiy of items
+		String quantity ="0";
 		// reports
 		Report report = new Report();
 		Receipt receipt = new Receipt();
 		String userNo;
 		loyaltyProgram loyalty = new loyaltyProgram();
 
-		UserAuthentication userAuthentication = new UserAuthentication();
-		userAuthentication.UserAuthentication();
+		
+		 UserAuthentication userAuthentication = new UserAuthentication();
+		 userAuthentication.UserAuthentication();
+		 
 
 		Scanner in = new Scanner(System.in);
 
@@ -58,14 +62,13 @@ public class CashRegister {
 				recieptEnd = false;
 				// until the cart is empty/has next item
 				while (nextItem == true) {
-					System.out.print("Please enter the item's name:");
+					System.out.print("Please enter the item's name: ");
 					s = in.nextLine();
 					// check for input other than int
 					while (!validation) {
 						try {
-							System.out.print("Please enter the item's cost:");
+							System.out.print("Please enter the item's cost: ");
 							c = in.nextLine();
-							receipt.itemDetails(s, Double.parseDouble(c), 1);
 							validation = true;
 
 						} catch (Exception e) {
@@ -73,10 +76,28 @@ public class CashRegister {
 						}
 					}
 					validation = false;
+					
+					//Asking for quantity of items 
+					while (!validation) {
+						try {
+							System.out.print("Please enter quantity of the item:");
+							quantity = in.nextLine();
+							//Adds the name, cost, and quantiy of item to the receiept class to
+							//generate the receipt
+							receipt.itemDetails(s, Double.parseDouble(c), Integer.parseInt(quantity));
+							validation = true;
+						}
+						catch (Exception e) {
+							System.out.println("Invalid input, please enter a appropriate value.");
+						}
+					}
+					
+					validation = false;
 
 					Transaction trans = new Transaction(s, Double.parseDouble(c));
 
-					totalCost += trans.getCost();
+					totalCost += trans.getCost()*Integer.parseInt(quantity);
+					
 					System.out.println("Have you entered all items? (y/n)");
 					s = in.nextLine();
 					while (!(s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n"))) {
@@ -223,4 +244,5 @@ public class CashRegister {
 				+ " +-+ +-+ +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+\n");
 	}
 }
+
 
