@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -190,7 +191,9 @@ public class Receipt {
 		PrintWriter outputStream = null;
 
 		try {
-			outputStream = new PrintWriter(new FileOutputStream("receipt.txt"));
+			// Creating export folder if not exist
+			new File("Receipt").mkdir();
+			outputStream = new PrintWriter(new FileOutputStream("./Receipt/receipt.txt"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
