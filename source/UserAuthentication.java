@@ -8,10 +8,6 @@ public class UserAuthentication
 	boolean flag = false;
 	double robot_check = 0;
 	String username;
-	public String getCurrent_user() {
-		return current_user;
-	}
-
 	String password;
 	private String current_user;
 	String current_password;
@@ -25,7 +21,7 @@ public class UserAuthentication
 			System.out.println("==========================================================");
 			System.out.println("Warning, the following cash register is protected.");
 			System.out.println("Please select one of the following options from the menu: ");
-			System.out.println("L - Login / S - Sign_up / E - Exit");
+			System.out.println("L - Login / S - Sign_up / G - Guest / E - Exit");
 			
 			user_input = input.nextLine();
 			if (user_input.equalsIgnoreCase("L"))
@@ -44,6 +40,14 @@ public class UserAuthentication
 				System.out.println("Congratulations, you have successfully become a new user of this cash register");
 				System.out.println("Please login with your new username and password");
 				continue;
+			}
+			
+
+			if (user_input.equalsIgnoreCase("G"))
+			{
+				setCurrent_user("Guest");
+				System.out.println("Logging on as Guest");
+				validation = true;
 			}
 			
 			if (user_input.equalsIgnoreCase("E"))
@@ -156,6 +160,16 @@ public class UserAuthentication
 		}
 		return value;
 	}
+	public String getCurrent_user() 
+	{
+		return current_user;
+	}
+	
+	public void setCurrent_user(String current_user)
+	{
+		this.current_user = current_user;
+	}
+
 }
 
 class profile
