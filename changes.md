@@ -5,6 +5,9 @@ Below are the changes that was made to the program and system. The changes are s
 
 ## Specific Improvements
 
+### Guest Login Option for User Authentication
+The user authentication class was improved with the implementation of a guest login option. This option allows for users of the cash register program to log in as a guest, thus allowing users to operate the program without the need to enter a username and password. While making use of the program, the program will treat the user as a guest and print guest on all reports and receipts. This has several advantages such as allowing software testers to bypass the authentication process to immediately test the program. It is also a quick way for users to demonstrate the program without making fraudulent purchases under an official cashier name. 
+
 ### Dynamic Receipt Names and Transaction Number
 The receipt class was modified to include the implementation of dynamic receipt names. Previously, every time a receipt was requested, the program would overwrite the existing file. With this change, the receipt file name will have a unique name (The date and time that the receipt was printed). A transaction number was also included in the receipt file. This is purely for aesthetics reasons as many receipts would keep track of the transaction number. 
 
