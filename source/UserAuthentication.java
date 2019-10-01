@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * @author Anthony N.
+ *
+ */
+
 public class UserAuthentication 
 {
 	Scanner input = new Scanner(System.in);
@@ -13,10 +18,15 @@ public class UserAuthentication
 	String current_password;
 	profile[] profileList = new profile[0];
 
+	/**
+	 * Constructor for the UserAuthentication class.
+	 * 
+	 */
 	public void UserAuthentication()
 	{
 		while (validation == false)
 		{
+			// Program begins with the following prompts
 			System.out.println("");
 			System.out.println("==========================================================");
 			System.out.println("Warning, the following cash register is protected.");
@@ -24,6 +34,8 @@ public class UserAuthentication
 			System.out.println("L - Login / S - Sign_up / G - Guest / E - Exit");
 			
 			user_input = input.nextLine();
+			
+			// When user selects "L", program will proceed to login operations.
 			if (user_input.equalsIgnoreCase("L"))
 			{
 				login();
@@ -33,6 +45,7 @@ public class UserAuthentication
 				}
 			}
 			
+			// When user selects "S", program will proceed to signing up operations.
 			if (user_input.equalsIgnoreCase("S"))
 			{
 				System.out.println("Lets create a new user login for you");
@@ -42,7 +55,7 @@ public class UserAuthentication
 				continue;
 			}
 			
-
+			// When user selects "G", program will proceed to allocate user with guest username.
 			if (user_input.equalsIgnoreCase("G"))
 			{
 				setCurrent_user("Guest");
@@ -50,11 +63,13 @@ public class UserAuthentication
 				validation = true;
 			}
 			
+			// When user selects "E", program will close.
 			if (user_input.equalsIgnoreCase("E"))
 			{
 				exit();
 			}
 			
+			// Too many failed attempts will result in a program shutdown.
 			if (robot_check >= 3)
 			{
 				System.out.println("Too many failed attempts. You are suspected of being a robot.");
@@ -63,6 +78,7 @@ public class UserAuthentication
 				exit();
 			}
 			
+			// Used for testing purposes. Displays existing users in the array.
 			if (user_input.equalsIgnoreCase("Admin"))
 			{
 				System.out.println(toString());
@@ -78,11 +94,21 @@ public class UserAuthentication
 		System.out.println("==========================================================");
 		System.out.println("");
 	}
+	
+	/**
+	 * Method that exits the program.
+	 * 
+	 */
 	public void exit()
 	{
 		System.out.println("We hope to see you next time, bye for now!");
 		System.exit(0);
 	}
+	
+	/**
+	 * Method that validates the current user and associated password.
+	 * 
+	 */
 	public void login() 
 	{
 		boolean found_user = false;
@@ -122,6 +148,10 @@ public class UserAuthentication
 		}
 	}
 	
+	/**
+	 * Method that adds the new username and password to the list. 
+	 * 
+	 */
 	public void signUp()
 	{
 		System.out.println("Please enter new username: ");
@@ -132,6 +162,11 @@ public class UserAuthentication
 		userFabrication(newProfile);
 		System.out.println(newProfile.toString());
 	}
+	
+	/**
+	 * Method that keeps count of the number of failed attempts.
+	 * 
+	 */
 	public void robotCheck()
 	{
 		System.out.println("Invalid Input. Please try again.");
@@ -139,6 +174,11 @@ public class UserAuthentication
 		System.out.println("Failed Attempts: " + robot_check);
 	}
 	
+	/**
+	 * This method adds the new profile to the list.
+	 * 
+	 * @param newprofile to be added to the list.
+	 */
 	public void userFabrication(profile newprofile)
 	{
 		profile[] newProfileList = new profile[profileList.length + 1];
@@ -151,6 +191,11 @@ public class UserAuthentication
 		profileList[profileList.length - 1] = newprofile;
 	}
 	
+	/**
+	 * A modified toString method that prints out the profile list.
+	 * 
+	 * @return The string of the current list
+	 */
 	public String toString() 
 	{
 		String value = "";
@@ -165,6 +210,11 @@ public class UserAuthentication
 		return current_user;
 	}
 	
+	/**
+	 * Set the current user.
+	 * 
+	 * @param current_user
+	 */
 	public void setCurrent_user(String current_user)
 	{
 		this.current_user = current_user;
@@ -176,6 +226,13 @@ class profile
 {
 	String username;
 	String password;
+	
+	/**
+	 * Constructor for the profile class. Initialises the username and
+	 * password for the current profile.
+	 * @param username
+	 * @param password
+	 */
 	
 	public profile(String username, String password)
 	{
