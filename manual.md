@@ -15,6 +15,7 @@ The cash register software is a program that allows users to process transacatio
   * [Feature - Loyalty Program](#feature---loyalty-program)
   * [Feature - Reporting](#feature---loyalty-program)
   * [Feature – Payment](#feature---payment)
+  * [Feature – Report](#feature---report)
 
 # Getting started
 
@@ -102,3 +103,19 @@ It will ask the user to select between three options:
 	* User will issue the gift card to the EFTPOS machine which will be connected to the gift card system.
     * Processing progress bar will be displayed in the system while the EFTPOS machine process the payment.
     * If the payment is successful a payment successful dialog will be displayed.
+
+### Feature – Report
+The system automatically generates a summary report of all the transactions. The system will display the report and export it in a text file before the system terminates. The report will have various information about the transaction including date and time of the transaction, total amount and cashier. The report will also provide inventory information that would be very useful for inventory management. The report will also present information about starting and ending balance of the cash register.
+
+### Usage:
+After the user logs in and enter the cash register’s amount or after a transaction is complete, a prompt will display with the following options:
+```java
+Would you like to proceed with the transaction? (y/n)
+```
+It will ask the user to select between two options:
+
+*  **(1) Y - Yes**
+    * A new transaction will occur and the user is asked to provide further information
+
+*  **(2) N – No**
+    * A summary report of all the transactions is displayed by the system and a text file of the report is generated.
