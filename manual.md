@@ -56,3 +56,30 @@ It will ask you to select between three options:
 *  **(3) Enter - Skip**
     * Choosing this option will ignore the first two options and continue with the program
 
+### Feature – Payment
+The system supports three different methods of payment. Customers can pay by bank card, cash or by gift card. When the customer chooses to pay by bank card or by gift card, the system awaits the customer to issue the card to the EFTPOS machine to process the payment. The system does not record any of the customer’s bank card or gift card details and link them directly to the customer’s bank or the gift card system. If the customer wants to pay by cash, the amount tendered is recorded and the required change is calculated by the system. It is validated if the customer is paying the total cost of the item when making payments. 
+
+### Usage: 
+After a customer skips or add their loyalty account to the sale, a prompt will display with the following options underneaths: 
+```java
+Please Choose the type of payment
+>1. Cash 
+>2. Bank Card 
+>3. Gift Card
+```
+It will ask the user to select between three options:
+
+*  **(1) 1 - Cash**
+    * User will be prompted to enter the **cash amount tendered**.
+    * If the cash tendered is equalled to or more than the total items cost then the amount of change required is displayed.
+    * If the cash tendered is less than the total items cost, a warning will display and the user will be prompted to enter the cash amount tendered again.
+
+*  **(2) 2 – Bank card**
+    * User will issue the bank card to the EFTPOS machine which will be connected to the bank system.
+    *Processing progress bar will be displayed in the system while the EFTPOS machine process the payment.
+    *If the payment is successful a payment successful dialog will be displayed.
+    
+* **(3) 3 – Gift card**
+	* User will issue the gift card to the EFTPOS machine which will be connected to the gift card system.
+    * Processing progress bar will be displayed in the system while the EFTPOS machine process the payment.
+    * If the payment is successful a payment successful dialog will be displayed.
