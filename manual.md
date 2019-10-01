@@ -64,13 +64,13 @@ It will ask you to select between three options:
 ### Feature - Loyalty Program
 The loyalty program is a feature implemented in the CashRegister program which allows customer to have a loyalty account. The amount of loyalty points that can be accrued depends on how much was spent. In this case, it is 1 point for every $10 spent. Points can then be used to redeem offers such as discounts. The program keeps track of the customers that are part of the loyalty program, their membership number, and their current balance. Users of the software will be given the choice to enter a membership number (to update their existing balance), create a new account, or simply skip if they wish.
 
-#### Usage
+### Usage
 
-After the last item has been added to the checkout, a prompt will display with the following options underneath:
+After the last item has been added to the checkout, a prompy will display with the following options underneath:
 
 ```java
-Do you have a UniSA Loyalty Card?
-> Y - Yes, C - Create, Enter - Skip
+Do you have a UniSA Loyatly Card?
+> Y - Yes | C - Create | Enter - Skip
 ```
 It will ask you to select between three options:
 *  **(1) Y - Yes**
@@ -81,10 +81,15 @@ It will ask you to select between three options:
 *  **(2) C - Create**
     * User will be prompted to enter in the customer's **name**.
     * The program will then create an account for that customer.
-    * It will then automatically add the required loyalty points to the account and return back to the cash register program.
+    * It will then automatically add the required loyatly points to the account and return back to the cash register program.
 
 *  **(3) Enter - Skip**
     * Choosing this option will ignore the first two options and continue with the program
+
+**Note:** Some dummy accounts (with balances) were created for the purpose of testing the loyalty program. Feel free to use them:
+ * 000000
+ * 000001
+ * 000002
 
 ### Feature - Payment Options
 The system supports three different methods of payment. Customers can pay by bank card, cash or by gift card. When the customer chooses to pay by bank card or by gift card, the system awaits the customer to issue the card to the EFTPOS machine to process the payment. The system does not record any of the customer’s bank card or gift card details and link them directly to the customer’s bank or the gift card system. If the customer wants to pay by cash, the amount tendered is recorded and the required change is calculated by the system. It is validated if the customer is paying the total cost of the item when making payments. 
