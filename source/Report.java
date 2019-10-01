@@ -1,9 +1,11 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Report {
 	private ArrayList<Receipt> receipt = new ArrayList<Receipt>();
@@ -104,11 +106,15 @@ public class Report {
 		// Outputing the report in text file
 		PrintWriter outputStream = null;
 		try {
-			// Date formating for report name
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy HH:mm");
+			// Date formating for report file name
+			String fileName = new SimpleDateFormat("yyyy-MM-dd-hhmm'.txt'").format(new Date());
+			fileName = "Report_" + fileName;
+			// Creating export folder if not exist
+			new File("Reports").mkdir();
+			File file = new File("./Reports/" + fileName);
+
 			// Output name of the report.
-			outputStream = new PrintWriter(
-					new FileOutputStream("report_" + formatter.format(Calendar.getInstance().getTime()) + ".txt"));
+			outputStream = new PrintWriter(new FileOutputStream(file));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
