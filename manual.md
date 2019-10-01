@@ -14,8 +14,8 @@ The cash register software is a program that allows users to process transacatio
   * [Feature - User Authentication](#feature---user-authentication)
   * [Feature - Loyalty Program](#feature---loyalty-program)
   * [Feature - Reporting](#feature---loyalty-program)
-  * [Feature – Payment](#feature---payment)
-  * [Feature – Report](#feature---report)
+  * [Feature - Payment Options](#feature---payment-options)
+  * [Feature - Reporting](#feature---reporting)
 
 # Getting started
 
@@ -46,7 +46,12 @@ It will ask you to select between three options:
     * Once the username has been entered, the program will proceed to ask the user for a new ***password***.
     * The program will display the new username and associated password and confirm successful sign up.
 
-*  **(3) E - Exit**
+*  **(3) G - Guest**
+    * Selecting this option will assign current user a guest account.
+    * The program will inform current user that they are logging on as guest.
+    * User can now proceed to main program under the guest account.
+
+*  **(4) E - Exit**
     * Selecting this option will force the program to close.
     
 * Note: Too many failed attempts will force shut the program.
@@ -76,7 +81,7 @@ It will ask you to select between three options:
 *  **(3) Enter - Skip**
     * Choosing this option will ignore the first two options and continue with the program
 
-### Feature - Payment
+### Feature - Payment Options
 The system supports three different methods of payment. Customers can pay by bank card, cash or by gift card. When the customer chooses to pay by bank card or by gift card, the system awaits the customer to issue the card to the EFTPOS machine to process the payment. The system does not record any of the customer’s bank card or gift card details and link them directly to the customer’s bank or the gift card system. If the customer wants to pay by cash, the amount tendered is recorded and the required change is calculated by the system. It is validated if the customer is paying the total cost of the item when making payments. 
 
 ### Usage: 
@@ -104,7 +109,7 @@ It will ask the user to select between three options:
     * Processing progress bar will be displayed in the system while the EFTPOS machine process the payment.
     * If the payment is successful a payment successful dialog will be displayed.
 
-### Feature – Report
+### Feature - Reporting
 The system automatically generates a summary report of all the transactions. The system will display the report and export it in a text file before the system terminates. The report will have various information about the transaction including date and time of the transaction, total amount and cashier. The report will also provide inventory information that would be very useful for inventory management. The report will also present information about starting and ending balance of the cash register.
 
 ### Usage:
