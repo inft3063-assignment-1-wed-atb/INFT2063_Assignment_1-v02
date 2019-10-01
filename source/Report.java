@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Report {
@@ -46,6 +45,7 @@ public class Report {
 
 	/**
 	 * Return the string representation of the report
+	 * 
 	 * @return string representation of the report
 	 */
 	public String printReport() {
