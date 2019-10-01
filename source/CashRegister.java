@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class CashRegister {
 	public static void main(String[] args) {
-		String s = null;
-		String c = "0";
+		String primary_input = null;
+		String auxiliary_input = "0";
 		String proceed;
 		double balance = 0;
 		String dollar_symbol = "$";
@@ -25,26 +25,24 @@ public class CashRegister {
 		String userNo;
 		loyaltyProgram loyalty = new loyaltyProgram();
 
+		UserAuthentication userAuthentication = new UserAuthentication();
+		userAuthentication.UserAuthentication();
 		
-		 UserAuthentication userAuthentication = new UserAuthentication();
-		 userAuthentication.UserAuthentication();
-		 
-
-		Scanner in = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 
 		System.out.println(".  ..___.    __ .__..  ..___\n" + "|  |[__ |   /  `|  ||\\/|[__ \n"
 				+ "|/\\|[___|___\\__.|__||  |[___\n" + "                            \n");
 		while (!validation) {
 			try {
 				System.out.print("Please enter cash register's float:");
-				s = in.nextLine();
-				balance = Double.parseDouble(s);
+				primary_input = input.nextLine();
+				balance = Double.parseDouble(primary_input);
 				// validate amount not less than 0
 				if(balance <0) {
 					System.out.println("Cash register can not have less than $0");
 				}
 				// validate amount less than a million dollar
-				else if(s.length() > 6 ) {
+				else if(primary_input.length() > 6 ) {
 					System.out.println("Cash register amount should be less than a million dollar.");
 				}
 				else {
@@ -61,7 +59,7 @@ public class CashRegister {
 
 		while (!endProgram) {
 			System.out.println("Would you like to proceed with the transaction? (y/n)");
-			proceed = in.nextLine();
+			proceed = input.nextLine();
 
 			if (proceed.equalsIgnoreCase("y")) {
 				// new transactions set every validation to default
@@ -75,23 +73,23 @@ public class CashRegister {
 				// until the cart is empty/has next item
 				while (nextItem == true) {
 					System.out.print("Please enter the item's name: ");
-					s = in.nextLine();
-					while (s.length() > 100) {
+					primary_input = input.nextLine();
+					while (primary_input.length() > 100) {
 						System.out.println("Item name can not have more than 100 characters.");
 						System.out.print("Please enter the item's name: ");
-						s = in.nextLine();
+						primary_input = input.nextLine();
 					}
 					// check for input other than int
 					while (!validation) {
 						try {
 							System.out.print("Please enter the item's cost: ");
-							c = in.nextLine();
+							auxiliary_input = input.nextLine();
 							// validate item cost not less than 0
-							if (Double.parseDouble(c) < 0) {
+							if (Double.parseDouble(auxiliary_input) < 0) {
 								System.out.println("Item cost can not be less than 0");
 							}
 							// validate itemcost less than a million dollar
-							else if (c.length() > 6) {
+							else if (auxiliary_input.length() > 6) {
 								System.out.println("Item cost should be less than a million dollar.");
 							} else {
 								validation = true;
@@ -106,7 +104,7 @@ public class CashRegister {
 					while (!validation) {
 						try {
 							System.out.print("Please enter quantity of the item:");
-							quantity = in.nextLine();
+							quantity = input.nextLine();
 							// validate quantity not less than 0
 							if (Double.parseDouble(quantity) < 0) {
 								System.out.println("Qunatity can not be less than 0");
@@ -117,7 +115,7 @@ public class CashRegister {
 							} else {
 								// Adds the name, cost, and quantiy of item to the receiept class to
 								// generate the receipt
-								receipt.itemDetails(s, Double.parseDouble(c), Integer.parseInt(quantity));
+								receipt.itemDetails(primary_input, Double.parseDouble(auxiliary_input), Integer.parseInt(quantity));
 								validation = true;
 							}
 						}
@@ -128,18 +126,18 @@ public class CashRegister {
 					
 					validation = false;
 
-					Transaction trans = new Transaction(s, Double.parseDouble(c));
+					Transaction trans = new Transaction(primary_input, Double.parseDouble(auxiliary_input));
 
 					totalCost += trans.getCost()*Integer.parseInt(quantity);
 					
 					System.out.println("Have you entered all items? (y/n)");
-					s = in.nextLine();
-					while (!(s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n"))) {
+					primary_input = input.nextLine();
+					while (!(primary_input.equalsIgnoreCase("y") || primary_input.equalsIgnoreCase("n"))) {
 						System.out.println("Please Enter y/n only");
 						System.out.println("Have you entered all items? (y/n)");
-						s = in.nextLine();
+						primary_input = input.nextLine();
 					}
-					if (s.equalsIgnoreCase("y")) {
+					if (primary_input.equalsIgnoreCase("y")) {
 						//updates the transaction number for the receipt 
 						int transNumber = Integer.parseInt(transNo) +1;
 						transNo = String.format("%04d", transNumber); 
@@ -163,24 +161,24 @@ public class CashRegister {
 							// List of payment options
 							System.out.println(
 									"Please Choose the type of payment \n" + "1. Cash \n2. Bank Card \n3. Gift Card");
-							String paymentType = in.nextLine();
+							String paymentType = input.nextLine();
 							switch (paymentType) {
 							// payment type is cash
 							case "1": {
 								// Ask for cash tendered, pass into receipt
 								System.out.print("Please enter the cash amount tendered:");
-								s = in.nextLine();
-								while (Double.parseDouble(s) < totalCost) {
+								primary_input = input.nextLine();
+								while (Double.parseDouble(primary_input) < totalCost) {
 									System.out.println("<<* Cash tendered is less than total cost *>>\n");
 									System.out.print("Please enter the cash amount tendered:");
-									s = in.nextLine();
+									primary_input = input.nextLine();
 								}
-								receipt.cash(Double.parseDouble(s));
-								c = Double.toString(Double.parseDouble(s) - totalCost);
+								receipt.cash(Double.parseDouble(primary_input));
+								auxiliary_input = Double.toString(Double.parseDouble(primary_input) - totalCost);
 
-								System.out.println("Amount of change required = " + dollar_symbol + c);
+								System.out.println("Amount of change required = " + dollar_symbol + auxiliary_input);
 
-								c = Double.toString(balance + totalCost);
+								auxiliary_input = Double.toString(balance + totalCost);
 								totalSale += totalCost;
 								paymentComplete = true;
 								validation = true;
@@ -194,7 +192,7 @@ public class CashRegister {
 								CashRegister.processPayment();
 								// Cash received is equal to the total price
 								receipt.cash(receipt.getTotalPrice());
-								c = Double.toString(balance + totalCost);
+								auxiliary_input = Double.toString(balance + totalCost);
 								totalSale += totalCost;
 								paymentComplete = true;
 								validation = true;
@@ -207,7 +205,7 @@ public class CashRegister {
 								CashRegister.processPayment();
 								// Cash received is equal to the total price
 								receipt.cash(receipt.getTotalPrice());
-								c = Double.toString(balance + totalCost);
+								auxiliary_input = Double.toString(balance + totalCost);
 								totalSale += totalCost;
 								validation = true;
 								paymentComplete = true;
@@ -233,7 +231,7 @@ public class CashRegister {
 					// Adding receipt to the report
 					report.getReceipt().add(receipt);
 					System.out.println("Would you like a copy of your reciept? (y/n)");
-					proceed = in.nextLine();
+					proceed = input.nextLine();
 
 					if (proceed.equalsIgnoreCase("y")) {
 						System.out.println(receipt.printReciept());
@@ -259,7 +257,7 @@ public class CashRegister {
 
 		}
 		// Closing scanner
-		in.close();
+		input.close();
 
 	}
 
