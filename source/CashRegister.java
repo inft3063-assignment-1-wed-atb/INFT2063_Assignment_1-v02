@@ -37,9 +37,19 @@ public class CashRegister {
 				System.out.print("Please enter cash register's float:");
 				s = in.nextLine();
 				balance = Double.parseDouble(s);
+				// validate amount not less than 0
+				if(balance <0) {
+					System.out.println("Cash register can not have less than $0");
+				}
+				// validate amount less than a million dollar
+				else if(s.length() > 6 ) {
+					System.out.println("Cash register amount should be less than a million dollar.");
+				}
+				else {
 				report.setStartBalance(balance);
-
+				
 				validation = true;
+				}
 
 			} catch (Exception e) {
 				System.out.println("Invalid input, please enter a appropriate value.");
@@ -64,13 +74,26 @@ public class CashRegister {
 				while (nextItem == true) {
 					System.out.print("Please enter the item's name: ");
 					s = in.nextLine();
+					while (s.length() > 100) {
+						System.out.println("Item name can not have more than 100 characters.");
+						System.out.print("Please enter the item's name: ");
+						s = in.nextLine();
+					}
 					// check for input other than int
 					while (!validation) {
 						try {
 							System.out.print("Please enter the item's cost: ");
 							c = in.nextLine();
-							validation = true;
-
+							// validate item cost not less than 0
+							if (Double.parseDouble(c) < 0) {
+								System.out.println("Item cost can not be less than 0");
+							}
+							// validate itemcost less than a million dollar
+							else if (c.length() > 6) {
+								System.out.println("Item cost should be less than a million dollar.");
+							} else {
+								validation = true;
+							}
 						} catch (Exception e) {
 							System.out.println("Invalid input, please enter a appropriate value.");
 						}
@@ -82,10 +105,19 @@ public class CashRegister {
 						try {
 							System.out.print("Please enter quantity of the item:");
 							quantity = in.nextLine();
-							//Adds the name, cost, and quantiy of item to the receiept class to
-							//generate the receipt
-							receipt.itemDetails(s, Double.parseDouble(c), Integer.parseInt(quantity));
-							validation = true;
+							// validate quantity not less than 0
+							if (Double.parseDouble(quantity) < 0) {
+								System.out.println("Qunatity can not be less than 0");
+							}
+							// validate qunatity less than a 100.
+							else if (quantity.length() > 3) {
+								System.out.println("Quantity should be less than 1000.");
+							} else {
+								// Adds the name, cost, and quantiy of item to the receiept class to
+								// generate the receipt
+								receipt.itemDetails(s, Double.parseDouble(c), Integer.parseInt(quantity));
+								validation = true;
+							}
 						}
 						catch (Exception e) {
 							System.out.println("Invalid input, please enter a appropriate value.");
