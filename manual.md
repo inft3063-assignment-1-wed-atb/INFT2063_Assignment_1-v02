@@ -20,8 +20,13 @@ The cash register software is a program that allows users to process transacatio
 # Getting started
 
 ## Prerequisites
+- Java is installed on the computer.
 
 ## Installation
+To install the system using the command line, follow the steps:
+- Enter inside the source folder of the project 
+- type `make` : It will create an executable jar file named **My_Cash_Register.jar**
+- To execute the jar file using the command line interface, using command line enter inside the folder where jar file is located and type `java -jar My_Cash_Register.jar`. The program will start to run.
 
 ## Features
 
