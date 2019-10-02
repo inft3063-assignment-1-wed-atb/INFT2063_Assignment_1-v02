@@ -20,7 +20,18 @@ This was changed to reflect that:
 Please enter the item's name: Coke
 Please enter the Coke's cost: 10
  ```
- Along with this, there were other system prompt changes made to improve the quality of life of the system.
+Along with this, there were other system prompt changes made to improve the quality of life of the system.
+
+Furthermore, in an effort to improve the readability of the program’s functioning code, it was decided that all ambiguous variable names were converted to become more comprehensible. 
+An example of this was the variable: 
+```java
+String s = null;
+```
+As evident, the variable ‘s’ is not informative to the user, thus it was renamed to: 
+```java
+String primary_input = null;
+```
+Variables like these were renamed to become more relevant to their function and make the overall source code self-documenting. This minimises the need for testers, developers and users to refer to other sources for information in regards to understanding the code.
 
 ## Specific Improvements
 
